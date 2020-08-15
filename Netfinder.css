@@ -203,9 +203,9 @@ p, ol, em{
 }
 .demo{
   width: 80vw;
-  height: 40vh;
+  min-height: 40vh;
   max-width: 700px;
-  max-height: 700px;
+  max-height: 1000px;
   margin: 2rem auto;
   display: flex;
 }
