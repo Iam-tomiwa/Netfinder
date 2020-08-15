@@ -52,9 +52,19 @@ function myAlert(text){
   alertBox.style.display = 'flex'
 }
 
+function error(){
+  network.innerHTML = '<p class="error"><i class="fas fa-exclamation-triangle"></i> Error! Pls enter a complete and correct number</p>'
+  bg.style.display = 'block'
+  alertBox.style.display = 'flex'
+}
+
 function netFind(){
-  let val = input.value
-  if( val.startsWith('0803') || val.startsWith('0703') || 
+  let val = input.value;
+  value = parseInt(val, 10);
+  len = Math.ceil(Math.log(value + 1) / Math.LN10)
+  console.log(len);
+  if (len === 10 && typeof(value) === 'number' ) {
+    if( val.startsWith('0803') || val.startsWith('0703') || 
       val.startsWith('0903') || val.startsWith('0806') ||
       val.startsWith('0706') || val.startsWith('0813') ||
       val.startsWith('0810') || val.startsWith('0814') ||
@@ -63,36 +73,33 @@ function netFind(){
     myAlert('Mtn');
     network.style.color = '#f1d012'
     
-  } else if( val.startsWith('0805') || val.startsWith('0705') || 
-  val.startsWith('0905') || val.startsWith('0807') ||
-  val.startsWith('0815') || val.startsWith('0811') ||
-  val.startsWith('0905')){
+    } else if( val.startsWith('0805') || val.startsWith('0705') || 
+    val.startsWith('0905') || val.startsWith('0807') ||
+     val.startsWith('0815') || val.startsWith('0811') ||
+     val.startsWith('0905')){
 
-    myAlert('Glo');
-    network.style.color = '#0abf53'
+     myAlert('Glo');
+     network.style.color = '#0abf53';
 
 
-  } else if( val.startsWith('0803') || val.startsWith('0703') || 
-  val.startsWith('0809') || val.startsWith('0909') ||
-  val.startsWith('0817') || val.startsWith('0818')){
+    } else if( val.startsWith('0803') || val.startsWith('0703') || 
+      val.startsWith('0809') || val.startsWith('0909') ||
+      val.startsWith('0817') || val.startsWith('0818')){
 
       myAlert('9mobile');
-      network.style.color = '#7fbb00'
+      network.style.color = '#7fbb00';
 
-  } else if( val.startsWith('0802') || val.startsWith('0902') || val.startsWith('0701') || val.startsWith('0812')){
+    } else if( val.startsWith('0802') || val.startsWith('0902') || val.startsWith('0701') || val.startsWith('0812')){
     
       myAlert('Airtel');
-      network.style.color = '#ff0000'
+      network.style.color = '#ff0000';
 
+    }
+  } else {
+      error();
   }
-  else{
-
-    myAlert('not valid');
-    network.style.color = '#000'
-
-  }
+  
 }
-
 
 input.addEventListener('keyup', function() {
   if(event.keyCode === 13){

@@ -47,7 +47,10 @@ hr{
   background: var(--sec-color);
   display: none;
 }
-
+.error{
+  color: red;
+  text-align: center;
+}
 /*nav-bar*/
 nav{
   height: 60px;
@@ -73,10 +76,9 @@ nav .menu{
 }
 .nav-menu p{
   font-size: 1rem;
-  position: absolute;
-  bottom: 7vh;
   border-top: 1px solid white;
   width: 100%;
+ margin: 40vh 0 0 0 ;
 }
 .socials{
   font-size: 1.7rem;
@@ -109,6 +111,7 @@ nav img{
   background: var(--primary-color);
   transition: .6s;
   width: 77vw;
+  overflow-y: scroll;
 }
 .overlay{
   width: 100vw;
@@ -203,9 +206,9 @@ p, ol, em{
 }
 .demo{
   width: 80vw;
-  min-height: 40vh;
+  height: 40vh;
   max-width: 700px;
-  max-height: 1000px;
+  max-height: 700px;
   margin: 2rem auto;
   display: flex;
 }
@@ -247,7 +250,7 @@ p, ol, em{
   padding: 0 .7rem;
 }
 .contact-pic{ 
-  width: 9rem;
+  width: rem;
   height: 9rem;
   border-radius: 50%;
   border: 2px solid  var(--primary-color); 
