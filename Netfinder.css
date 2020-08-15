@@ -78,7 +78,7 @@ nav .menu{
   font-size: 1rem;
   border-top: 1px solid white;
   width: 100%;
- margin: 40vh 0 0 0 ;
+ margin: 40vh 0 0 0;
 }
 .socials{
   font-size: 1.7rem;
@@ -111,7 +111,6 @@ nav img{
   background: var(--primary-color);
   transition: .6s;
   width: 77vw;
-  overflow-y: scroll;
 }
 .overlay{
   width: 100vw;
