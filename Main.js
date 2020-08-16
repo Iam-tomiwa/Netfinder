@@ -38,7 +38,7 @@ window.addEventListener('scroll', function(){
 /////////////////////////////////
 //search box functions
 
-let input = document.querySelector('.search-box');
+let phoneNumber = document.querySelector('.search-box');
 let search = document.querySelector('.search-icon');
 let alertBox = document.querySelector('.alert-box');
 let bg = document.querySelector('.overlay1');
@@ -46,69 +46,79 @@ let closeBox = document.querySelector('.close');
 let searchIcon = document.querySelector('.search-icon')
 let network = document.getElementById('network')
 
-function myAlert(text){
+function myAlert(text, color){
   network.textContent = `Your Network is ${text}.`
-  bg.style.display = 'block'
-  alertBox.style.display = 'flex'
+  bg.style.display = 'block';
+  alertBox.style.display = 'flex';
+  network.style.color = color;
 }
 
 function error(){
-  network.innerHTML = '<p class="error"><i class="fas fa-exclamation-triangle"></i> Error! Pls enter a complete and correct number</p>'
-  bg.style.display = 'block'
-  alertBox.style.display = 'flex'
+  network.innerHTML = '<p class="error"><i class="fas fa-exclamation-triangle"></i> Error! Pls enter a complete and valid  number</p>';
+  bg.style.display = 'block';
+  alertBox.style.display = 'flex';
 }
 
-function netFind(){
-  let val = input.value;
-  value = parseInt(val, 10);
-  len = Math.ceil(Math.log(value + 1) / Math.LN10)
-  console.log(len);
-  if (len === 10 && typeof(value) === 'number' ) {
+function getNetwork(){
+  let val = phoneNumber.value;
+  // let value = parseInt(val, 10);
+  // let valLength = Math.ceil(Math.log(value + 1) / Math.LN10);
+  if (val.length === 11) {
     if( val.startsWith('0803') || val.startsWith('0703') || 
       val.startsWith('0903') || val.startsWith('0806') ||
       val.startsWith('0706') || val.startsWith('0813') ||
       val.startsWith('0810') || val.startsWith('0814') ||
-      val.startsWith('0816')) {
+      val.startsWith('0816') || val.startsWith('07025') || val.startsWith('07026') || val.startsWith('0704') || val.startsWith('0906')) {
 
-    myAlert('Mtn');
-    network.style.color = '#f1d012'
-    
+      return myAlert('Mtn', '#f1d012');
+
     } else if( val.startsWith('0805') || val.startsWith('0705') || 
     val.startsWith('0905') || val.startsWith('0807') ||
-     val.startsWith('0815') || val.startsWith('0811') ||
-     val.startsWith('0905')){
+     val.startsWith('0815') || val.startsWith('0811')){
 
-     myAlert('Glo');
-     network.style.color = '#0abf53';
+      return myAlert('Glo', '#0abf53');
 
 
-    } else if( val.startsWith('0803') || val.startsWith('0703') || 
-      val.startsWith('0809') || val.startsWith('0909') ||
-      val.startsWith('0817') || val.startsWith('0818')){
+    } else if( val.startsWith('0809') || val.startsWith('0909') ||
+      val.startsWith('0817') || val.startsWith('0818') || val.startsWith('0908')){
 
-      myAlert('9mobile');
-      network.style.color = '#7fbb00';
+      return myAlert('9mobile', '#7fbb00');
 
-    } else if( val.startsWith('0802') || val.startsWith('0902') || val.startsWith('0701') || val.startsWith('0812')){
+    } else if( val.startsWith('0802') || val.startsWith('0902') || val.startsWith('0701') || val.startsWith('0812') || val.startsWith('0708') || val.startsWith('0808') || val.startsWith('0901') || val.startsWith('0904') || val.startsWith('0907')){
     
-      myAlert('Airtel');
-      network.style.color = '#ff0000';
+      return myAlert('Airtel', '#ff0000');
 
+    } else if(val.startsWith('0702')){
+      
+      return myAlert('Smile', '#757575')
+      
+    } else if(val.startsWith('0804')){
+      
+      return myAlert('Ntel', '#000');
+      
+    } else if(val.startsWith('0707')){
+      
+      return myAlert('Zoomobile', '#000');
+      
+    } else {
+      
+      return myAlert('Unknown', '#000');
+      
     }
   } else {
-      error();
+      return error();
   }
   
 }
 
-input.addEventListener('keyup', function() {
+phoneNumber.addEventListener('keyup', function() {
   if(event.keyCode === 13){
     event.preventDefault();
-    netFind()
+    return getNetwork();
   }
 });
 
-searchIcon.addEventListener('click', netFind);
+searchIcon.addEventListener('click', getNetwork);
 
 closeBox.addEventListener('click', function(){
 
@@ -122,4 +132,3 @@ closeBox.addEventListener('click', function(){
     // overlay.style.display = 'none';
         // navBar.style.display = 'block';
     // overlay.style.display = 'block';
-     
