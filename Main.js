@@ -43,7 +43,7 @@ let search = document.querySelector('.search-icon');
 let alertBox = document.querySelector('.alert-box');
 let bg = document.querySelector('.overlay1');
 let closeBox = document.querySelector('.close');
-let searchIcon = document.querySelector('.search-icon')
+let searchBtn = document.querySelector('.search-icon')
 let network = document.getElementById('network')
 
 function myAlert(text, color){
@@ -61,47 +61,38 @@ function error(){
 
 function getNetwork(){
   let val = phoneNumber.value;
-  // let value = parseInt(val, 10);
-  // let valLength = Math.ceil(Math.log(value + 1) / Math.LN10);
+
   if (val.length === 11) {
-    if( val.startsWith('0803') || val.startsWith('0703') || 
-      val.startsWith('0903') || val.startsWith('0806') ||
-      val.startsWith('0706') || val.startsWith('0813') ||
-      val.startsWith('0810') || val.startsWith('0814') ||
-      val.startsWith('0816') || val.startsWith('07025') || val.startsWith('07026') || val.startsWith('0704') || val.startsWith('0906')) {
-
-      return myAlert('Mtn', '#f1d012');
-
-    } else if( val.startsWith('0805') || val.startsWith('0705') || 
-    val.startsWith('0905') || val.startsWith('0807') ||
-     val.startsWith('0815') || val.startsWith('0811')){
-
-      return myAlert('Glo', '#0abf53');
-
-
-    } else if( val.startsWith('0809') || val.startsWith('0909') ||
-      val.startsWith('0817') || val.startsWith('0818') || val.startsWith('0908')){
-
-      return myAlert('9mobile', '#7fbb00');
-
-    } else if( val.startsWith('0802') || val.startsWith('0902') || val.startsWith('0701') || val.startsWith('0812') || val.startsWith('0708') || val.startsWith('0808') || val.startsWith('0901') || val.startsWith('0904') || val.startsWith('0907')){
+    let mtn = /0803|0703|0903|0806|0706|0813 |0810|0814|0816|0906|0704|07025|07026/;
     
-      return myAlert('Airtel', '#ff0000');
-
-    } else if(val.startsWith('0702')){
+    let glo = /0805|0705|0905|0807|0815|0811|0905/;
+    
+    let airtel = /0802|0902|0701|0808|0708 | 0812|0708|0808|0901|0904|0907/;
+    
+    let etisalat = /0809|0909|0817|0818|0908/;
+    
+    if (val.match(mtn)) {
+      return myAlert('Mtn', '#f1d012');
       
-      return myAlert('Smile', '#757575')
+    } else if (val.match(glo)) {
+      return myAlert('Glo', '#0abf53');
+      
+    } else if (val.match(airtel)) {
+      return myAlert('Airtel', '#ff0000');
+      
+    } else if (val.match(etisalat)) {
+      return myAlert('9mobile', '#7fbb00');
+      
+    } else if(val.startsWith('0702')){
+      return myAlert('Smile', '#757575');
       
     } else if(val.startsWith('0804')){
-      
       return myAlert('Ntel', '#000');
       
     } else if(val.startsWith('0707')){
-      
       return myAlert('Zoomobile', '#000');
       
     } else {
-      
       return myAlert('Unknown', '#000');
       
     }
@@ -118,17 +109,9 @@ phoneNumber.addEventListener('keyup', function() {
   }
 });
 
-searchIcon.addEventListener('click', getNetwork);
+searchBtn.addEventListener('click', getNetwork);
 
 closeBox.addEventListener('click', function(){
-
   bg.style.display = 'none'
   alertBox.style.display = 'none'
-
 });
-// navBar.classList.toggle('active')
-  // overlay.classList.toggle('active')
-   // navBar.style.display = 'none';
-    // overlay.style.display = 'none';
-        // navBar.style.display = 'block';
-    // overlay.style.display = 'block';
