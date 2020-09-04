@@ -1,3 +1,4 @@
+
 //////////////////////////////////
 //navigation toggle...
 let menuBtn = document.querySelector('.menu');
@@ -5,20 +6,20 @@ let navBar = document.querySelector('.nav-menu');
 let overlay = document.querySelector('.overlay');
 let topButton = document.getElementById('sticky');
 
-function toggleBtn(e){
-  if (menuBtn.classList.contains('fa-bars')) {
-    menuBtn.classList.toggle('fa-times');
+toggleBtn = () => {
+  if (menuBtn.classList.contains('la-bars')) {
+    menuBtn.classList.toggle('la-times');
     navBar.style.left = '-100vw';
     overlay.style.left = '-100vw';
   }
-   if(menuBtn.classList.contains('fa-times')){
+   if(menuBtn.classList.contains('la-times')){
     navBar.style.left = '0vw';
     overlay.style.left = '0vw';
   }
 }
 
-function close(e){
-    menuBtn.classList.toggle('fa-times');
+close = () => {
+    menuBtn.classList.toggle('la-times');
     navBar.style.left = '-100vw';
     overlay.style.left = '-100vw';
 }
@@ -27,7 +28,7 @@ menuBtn.addEventListener('click', toggleBtn);
 overlay.addEventListener('click', close);
 
 
-window.addEventListener('scroll', function(){
+window.addEventListener('scroll', e => {
   if(window.pageYOffset >= 100 ) {
     topButton.style.display = 'block';
   }else {
@@ -39,32 +40,31 @@ window.addEventListener('scroll', function(){
 //search box functions
 
 let phoneNumber = document.querySelector('.search-box');
-let search = document.querySelector('.search-icon');
 let alertBox = document.querySelector('.alert-box');
 let bg = document.querySelector('.overlay1');
 let closeBox = document.querySelector('.close');
 let searchBtn = document.querySelector('.search-icon')
 let network = document.getElementById('network')
 
-function myAlert(text, color){
+myAlert = (text, color) => {
   network.textContent = `Your Network is ${text}.`
   bg.style.display = 'block';
   alertBox.style.display = 'flex';
   network.style.color = color;
 }
 
-function error(){
-  network.innerHTML = '<p class="error"><i class="fas fa-exclamation-triangle"></i> Error! Pls enter a complete and valid  number</p>';
+error = () => {
+  network.innerHTML = '<p class="error"><i class="las la-exclamation-triangle"></i> Error! Pls enter a complete and valid  number</p>';
   bg.style.display = 'block';
   alertBox.style.display = 'flex';
 }
 
-function getNetwork(){
-  let val = phoneNumber.value;
+getNetwork = () => {
+  let value = phoneNumber.value;
+  val = value.slice(0, 5);
 
-  if (val.length === 11) {
+  if (value.length === 11) {
     let mtn = /0803|0703|0903|0806|0706|0813 |0810|0814|0816|0906|0704|07025|07026/;
-    
     let glo = /0805|0705|0905|0807|0815|0811|0905/;
     
     let airtel = /0802|0902|0701|0808|0708 | 0812|0708|0808|0901|0904|0907/;
@@ -102,7 +102,7 @@ function getNetwork(){
   
 }
 
-phoneNumber.addEventListener('keyup', function() {
+phoneNumber.addEventListener('keyup', e => {
   if(event.keyCode === 13){
     event.preventDefault();
     return getNetwork();
@@ -111,7 +111,8 @@ phoneNumber.addEventListener('keyup', function() {
 
 searchBtn.addEventListener('click', getNetwork);
 
-closeBox.addEventListener('click', function(){
+closeBox.addEventListener('click', e => {
   bg.style.display = 'none'
   alertBox.style.display = 'none'
 });
+
