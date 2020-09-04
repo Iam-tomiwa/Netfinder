@@ -1,25 +1,25 @@
 
 //////////////////////////////////
 //navigation toggle...
-let menuBtn = document.querySelector('.menu');
+let menuBtn = document.querySelector('.fa-bars');
 let navBar = document.querySelector('.nav-menu');
 let overlay = document.querySelector('.overlay');
 let topButton = document.getElementById('sticky');
 
 toggleBtn = () => {
-  if (menuBtn.classList.contains('la-bars')) {
-    menuBtn.classList.toggle('la-times');
+  if (menuBtn.classList.contains('fa-bars')) {
+    menuBtn.classList.toggle('fa-times');
     navBar.style.left = '-100vw';
     overlay.style.left = '-100vw';
   }
-   if(menuBtn.classList.contains('la-times')){
+   if(menuBtn.classList.contains('fa-times')){
     navBar.style.left = '0vw';
     overlay.style.left = '0vw';
   }
 }
 
 close = () => {
-    menuBtn.classList.toggle('la-times');
+    menuBtn.classList.toggle('fa-times');
     navBar.style.left = '-100vw';
     overlay.style.left = '-100vw';
 }
@@ -63,7 +63,7 @@ getNetwork = () => {
   let value = phoneNumber.value;
   val = value.slice(0, 5);
 
-  if (value.length === 11) {
+  if (value.length === 11 && !(isNaN(value))) {
     let mtn = /0803|0703|0903|0806|0706|0813 |0810|0814|0816|0906|0704|07025|07026/;
     let glo = /0805|0705|0905|0807|0815|0811|0905/;
     
@@ -93,11 +93,10 @@ getNetwork = () => {
       return myAlert('Zoomobile', '#000');
       
     } else {
-      return myAlert('Unknown', '#000');
-      
+      return myAlert('Unknown', '#000')
     }
   } else {
-      return error();
+      error();
   }
   
 }
