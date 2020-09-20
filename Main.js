@@ -1,51 +1,53 @@
 
 //////////////////////////////////
 //navigation toggle...
-let menuBtn = document.querySelector('.fa-bars');
-let navBar = document.querySelector('.nav-menu');
-let overlay = document.querySelector('.overlay');
-let topButton = document.getElementById('sticky');
+let menuBtn = document.getElementById('menu');
+let navBar = document.getElementById('nav-menu');
+let overlay = document.getElementById('overlay');
+let darkmode = document.getElementById('sticky');
+
+close = () => {
+  menuBtn.classList.toggle('la-times');
+  navBar.style.left = '-100vw';
+  overlay.style.left = '-100vw';
+}
 
 toggleBtn = () => {
-  if (menuBtn.classList.contains('fa-bars')) {
-    menuBtn.classList.toggle('fa-times');
+  if (menuBtn.classList.contains('la-bars')) {
+    menuBtn.classList.toggle('la-times');
     navBar.style.left = '-100vw';
     overlay.style.left = '-100vw';
   }
-   if(menuBtn.classList.contains('fa-times')){
+   if(menuBtn.classList.contains('la-times')){
     navBar.style.left = '0vw';
     overlay.style.left = '0vw';
   }
 }
 
-close = () => {
-    menuBtn.classList.toggle('fa-times');
-    navBar.style.left = '-100vw';
-    overlay.style.left = '-100vw';
-}
-
-menuBtn.addEventListener('click', toggleBtn);
 overlay.addEventListener('click', close);
+menuBtn.addEventListener('click', toggleBtn);
 
+///dark mode toggle button
+darkmode.addEventListener('click', e => {
+  document.body.classList.toggle('dark');
+  document.body.style.transition = 'all .5s linear';
+  darkmode.classList.toggle('fa-moon');
+  darkmode.classList.toggle('fa-sun');
+  document.querySelector('nav img').classList.toggle('img-dark');
+})
 
-window.addEventListener('scroll', e => {
-  if(window.pageYOffset >= 100 ) {
-    topButton.style.display = 'block';
-  }else {
-    topButton.style.display = 'none';
-  }
-});
 
 /////////////////////////////////
 //search box functions
 
 let phoneNumber = document.querySelector('.search-box');
-let alertBox = document.querySelector('.alert-box');
 let bg = document.querySelector('.overlay1');
+let alertBox = document.querySelector('.alert-box');
 let closeBox = document.querySelector('.close');
 let searchBtn = document.querySelector('.search-icon')
 let network = document.getElementById('network')
 
+//output alert
 myAlert = (text, color) => {
   network.textContent = `Your Network is ${text}.`
   bg.style.display = 'block';
@@ -53,12 +55,14 @@ myAlert = (text, color) => {
   network.style.color = color;
 }
 
+//error message
 error = () => {
   network.innerHTML = '<p class="error"><i class="las la-exclamation-triangle"></i> Error! Pls enter a complete and valid  number</p>';
   bg.style.display = 'block';
   alertBox.style.display = 'flex';
 }
 
+//main function
 getNetwork = () => {
   let value = phoneNumber.value;
   val = value.slice(0, 5);
@@ -87,13 +91,13 @@ getNetwork = () => {
       return myAlert('Smile', '#757575');
       
     } else if(val.startsWith('0804')){
-      return myAlert('Ntel', '#000');
+      return myAlert('Ntel', 'red');
       
     } else if(val.startsWith('0707')){
-      return myAlert('Zoomobile', '#000');
+      return myAlert('Zoomobile', 'red');
       
     } else {
-      return myAlert('Unknown', '#000')
+      return myAlert('Unknown', 'red')
     }
   } else {
       error();
