@@ -63,6 +63,7 @@ error = () => {
 
 //main function
 getNetwork = e => {
+  e.preventDefault();
   let value = phoneNumber.value;
   val = value.slice(0, 5);
 
@@ -94,15 +95,7 @@ getNetwork = e => {
   } else {
     error();
   }
-  e.preventDefault();
 };
-
-phoneNumber.addEventListener("keyup", e => {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    return getNetwork();
-  }
-});
 
 searchBtn.addEventListener("submit", getNetwork);
 
